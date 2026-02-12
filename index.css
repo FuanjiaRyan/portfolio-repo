@@ -934,6 +934,10 @@ ul {
         font-size: 1.3rem;
     }
     
+    .achievement-img {
+        height: 200px;
+    }
+    
     .nav-links {
         position: fixed;
         top: 0;
