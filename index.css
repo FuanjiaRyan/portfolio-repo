@@ -938,6 +938,20 @@ ul {
         height: 200px;
     }
     
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 30px;
+    }
+    
+    .achievement-content {
+        padding: 20px;
+    }
+    
+    .achievement-content h3 {
+        font-size: 1.2rem;
+    }
+    
     .nav-links {
         position: fixed;
         top: 0;
