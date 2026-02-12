@@ -622,6 +622,113 @@ ul {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Achievements Section */
+.achievements {
+    background-color: var(--light-bg);
+    position: relative;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.achievement-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    position: relative;
+}
+
+.achievement-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-img {
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.achievement-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.achievement-card:hover .achievement-img img {
+    transform: scale(1.05);
+}
+
+.achievement-content {
+    padding: 30px;
+}
+
+.achievement-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.achievement-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.achievement-content p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.achievement-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.achievement-details span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.achievement-details span:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.achievement-details i {
+    color: var(--primary-color);
+}
+
+.achievement-details span:hover i {
+    color: var(--white);
+}
+
 /* Contact Section */
 .contact {
     background-color: var(--light-bg);
@@ -680,6 +787,24 @@ ul {
     padding: 30px;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+    background-color: #25D366 !important;
+    border-color: #25D366 !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(37, 211, 102, 0.3);
 }
 
 .form-group {
