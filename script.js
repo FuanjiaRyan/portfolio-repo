@@ -93,9 +93,8 @@ if (yearElement) {
     yearElement.textContent = currentYear;
 }
 
-// Enhanced Scroll Animations with Mobile Detection
+// Enhanced Scroll Animations
 const animateOnScroll = () => {
-    const isMobile = window.innerWidth <= 768;
     const elements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
     
     elements.forEach(element => {
@@ -103,39 +102,14 @@ const animateOnScroll = () => {
         const screenPosition = window.innerHeight / 1.2;
         
         if (elementPosition < screenPosition) {
-            if (!isMobile) {
-                element.classList.add('visible');
-            }
+            element.classList.add('visible');
         }
     });
 };
 
-// Ensure navbar is visible on mobile
-const ensureNavbarVisible = () => {
-    const isMobile = window.innerWidth <= 768;
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (isMobile && navLinks) {
-        // Show navbar immediately on mobile
-        setTimeout(() => {
-            navLinks.style.opacity = '1';
-            navLinks.style.visibility = 'visible';
-        }, 100);
-    }
-};
-
 // Run animation on load and scroll
-window.addEventListener('load', () => {
-    ensureNavbarVisible();
-    animateOnScroll();
-});
-
+window.addEventListener('load', animateOnScroll);
 window.addEventListener('scroll', animateOnScroll);
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    ensureNavbarVisible();
-});
 
 // Animate elements on scroll (legacy support)
 const animateElements = document.querySelectorAll('.fadeInUp');
