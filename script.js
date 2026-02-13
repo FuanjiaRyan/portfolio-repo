@@ -95,7 +95,7 @@ if (yearElement) {
 
 // Animate elements on scroll
 const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.fadeInUp, .project-card, .achievement-card, .skill-category, .skill-item');
+    const elements = document.querySelectorAll('.fadeInUp');
     
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
