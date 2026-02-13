@@ -93,16 +93,17 @@ if (yearElement) {
     yearElement.textContent = currentYear;
 }
 
-// Enhanced Scroll Animations
+// Animate elements on scroll
 const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
+    const elements = document.querySelectorAll('.fadeInUp');
     
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
+        const screenPosition = window.innerHeight / 1.3;
         
         if (elementPosition < screenPosition) {
-            element.classList.add('visible');
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
         }
     });
 };
@@ -110,44 +111,6 @@ const animateOnScroll = () => {
 // Run animation on load and scroll
 window.addEventListener('load', animateOnScroll);
 window.addEventListener('scroll', animateOnScroll);
-
-// Animate elements on scroll (legacy support)
-const animateElements = document.querySelectorAll('.fadeInUp');
-animateElements.forEach(element => {
-    const elementPosition = element.getBoundingClientRect().top;
-    const screenPosition = window.innerHeight / 1.3;
-    
-    if (elementPosition < screenPosition) {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
-    }
-});
-
-window.addEventListener('load', () => {
-    const animateElements = document.querySelectorAll('.fadeInUp');
-    animateElements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-        
-        if (elementPosition < screenPosition) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }
-    });
-});
-
-window.addEventListener('scroll', () => {
-    const animateElements = document.querySelectorAll('.fadeInUp');
-    animateElements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-        
-        if (elementPosition < screenPosition) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }
-    });
-});
 
 // Initialize animations for skills
 const skillBars = document.querySelectorAll('.skill-level');
