@@ -1057,6 +1057,134 @@ ul {
     }
 }
 
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
 .fadeInUp {
     animation: fadeInUp 0.8s ease forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.6s ease forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.5s ease forwards;
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Enhanced Card Animations */
+.project-card, .achievement-card, .skill-category {
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.project-card:nth-child(2), .achievement-card:nth-child(2), .skill-category:nth-child(2) {
+    animation: slideInRight 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.project-card:nth-child(3), .achievement-card:nth-child(3), .skill-category:nth-child(3) {
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.project-card:nth-child(4), .achievement-card:nth-child(4), .skill-category:nth-child(4) {
+    animation: slideInRight 0.8s ease forwards;
+    animation-delay: 0.8s;
+}
+
+/* Hover Effects */
+.project-card:hover, .achievement-card:hover, .skill-category:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.project-img:hover img, .achievement-img:hover img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* Staggered animations for skill bars */
+.skill-item {
+    animation: slideInLeft 0.6s ease forwards;
+}
+
+.skill-item:nth-child(1) { animation-delay: 0.1s; }
+.skill-item:nth-child(2) { animation-delay: 0.2s; }
+.skill-item:nth-child(3) { animation-delay: 0.3s; }
+.skill-item:nth-child(4) { animation-delay: 0.4s; }
+.skill-item:nth-child(5) { animation-delay: 0.5s; }
+.skill-item:nth-child(6) { animation-delay: 0.6s; }
+.skill-item:nth-child(7) { animation-delay: 0.7s; }
+
+/* Floating elements */
+.about-img {
+    animation: float 4s ease-in-out infinite;
+}
+
+.education-img {
+    animation: float 3s ease-in-out infinite;
+}
+
+.education-img:nth-child(2) {
+    animation-delay: 1.5s;
+}
+
+/* Smooth transitions */
+.contact-item, .interests-list span {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-item:hover {
+    transform: translateX(10px);
+}
+
+.interests-list span:hover {
+    transform: translateY(-5px) scale(1.1);
 }
