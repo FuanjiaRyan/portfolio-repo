@@ -324,8 +324,10 @@
     };
 
     const animateCount = (el) => {
+        if (el.dataset.counted === "1") return;
         const target = Number(el.dataset.count);
         if (Number.isNaN(target)) return;
+        el.dataset.counted = "1";
         const start = performance.now();
         const duration = 1400;
         const tick = (now) => {
@@ -397,6 +399,7 @@
     };
 
     if (!prefersReducedMotion) {
+        document.documentElement.classList.add("js-anim");
         splitTitle();
         splitWords();
         if (finePointer) {
@@ -412,7 +415,7 @@
             window.setTimeout(() => {
                 document.body.classList.add("is-loaded");
                 intro?.remove();
-            }, 1900);
+            }, 1200);
         }
         requestAnimationFrame(loop);
     } else {
@@ -443,19 +446,11 @@
         document.querySelectorAll(".about-intro").forEach((el) => {
             el.dataset.reveal = "left";
         });
-        document.querySelectorAll(".contact-item").forEach((el, index) => {
-            el.dataset.reveal = "left";
-            el.style.setProperty("--d", `${index * 70}ms`);
-        });
         document.querySelectorAll(".info-card").forEach((el, index) => {
             el.dataset.reveal = index % 2 === 0 ? "right" : "up";
         });
-        document.querySelectorAll(".contact-form").forEach((el) => {
-            el.dataset.reveal = "right";
-        });
-        document.querySelectorAll(".skill-group").forEach((el, index) => {
-            el.dataset.reveal = index % 2 === 0 ? "left" : "right";
-            el.style.setProperty("--d", `${index * 80}ms`);
+        document.querySelectorAll(".contact-form, [data-slider]").forEach((el) => {
+            el.dataset.reveal = "up";
         });
         document.querySelectorAll(".project-card").forEach((el, index) => {
             el.dataset.reveal = index % 2 === 0 ? "left" : "right";
@@ -482,11 +477,115 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+        }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
 
         revealTargets.forEach((el) => observer.observe(el));
+        requestAnimationFrame(() => {
+            revealTargets.forEach((el) => {
+                const box = el.getBoundingClientRect();
+                if (box.top < window.innerHeight * 0.92 && box.bottom > 0) {
+                    el.classList.add("is-in");
+                    el.querySelectorAll("[data-count]").forEach(animateCount);
+                    observer.unobserve(el);
+                }
+            });
+        });
     }
 
     window.addEventListener("resize", updateNavIndicator);
     onScroll();
+
+    const initSlider = (track) => {
+        const id = track.id;
+        const prev = document.querySelector(`[data-slider-prev="${id}"]`);
+        const next = document.querySelector(`[data-slider-next="${id}"]`);
+        if (!id) return;
+
+        const cardSize = () => {
+            const card = track.children[0];
+            if (!card) return 280;
+            const styles = window.getComputedStyle(track);
+            const gap = Number.parseFloat(styles.columnGap || styles.gap) || 16;
+            return card.getBoundingClientRect().width + gap;
+        };
+
+        const updateButtons = () => {
+            const max = Math.max(0, track.scrollWidth - track.clientWidth - 4);
+            if (prev) prev.disabled = track.scrollLeft <= 4;
+            if (next) next.disabled = track.scrollLeft >= max;
+        };
+
+        const slide = (dir) => {
+            track.scrollBy({
+                left: dir * cardSize(),
+                behavior: prefersReducedMotion ? "auto" : "smooth"
+            });
+        };
+
+        prev?.addEventListener("click", () => slide(-1));
+        next?.addEventListener("click", () => slide(1));
+        track.addEventListener("scroll", updateButtons, { passive: true });
+        window.addEventListener("resize", updateButtons);
+
+        let pointerId = null;
+        let startX = 0;
+        let startScroll = 0;
+        let dragging = false;
+
+        track.addEventListener("pointerdown", (event) => {
+            if (event.target.closest("a, button, input, textarea, label")) return;
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            pointerId = event.pointerId;
+            startX = event.clientX;
+            startScroll = track.scrollLeft;
+            dragging = false;
+            track.classList.add("is-dragging");
+            track.setPointerCapture(pointerId);
+        });
+
+        track.addEventListener("pointermove", (event) => {
+            if (pointerId !== event.pointerId) return;
+            const dx = event.clientX - startX;
+            if (Math.abs(dx) > 8) dragging = true;
+            if (dragging) track.scrollLeft = startScroll - dx;
+        });
+
+        const endDrag = (event) => {
+            if (pointerId !== event.pointerId) return;
+            track.classList.remove("is-dragging");
+            if (dragging) {
+                const size = cardSize();
+                track.scrollTo({
+                    left: Math.round(track.scrollLeft / size) * size,
+                    behavior: prefersReducedMotion ? "auto" : "smooth"
+                });
+            }
+            pointerId = null;
+            window.setTimeout(() => {
+                dragging = false;
+            }, 40);
+            updateButtons();
+        };
+
+        track.addEventListener("pointerup", endDrag);
+        track.addEventListener("pointercancel", endDrag);
+        track.addEventListener("click", (event) => {
+            if (dragging) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        }, true);
+
+        track.addEventListener("wheel", (event) => {
+            if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+            if (track.scrollWidth <= track.clientWidth + 4) return;
+            event.preventDefault();
+            track.scrollLeft += event.deltaY;
+            updateButtons();
+        }, { passive: false });
+
+        updateButtons();
+    };
+
+    document.querySelectorAll("[data-slider]").forEach(initSlider);
 })();

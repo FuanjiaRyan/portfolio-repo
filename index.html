@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Fuanjia Akemfua Ryan — Web and App Developer, UI/UX Designer. Building responsive web and Flutter experiences from Buea, Cameroon.">
-    <meta name="theme-color" content="#0b0c10">
+    <meta name="theme-color" content="#ffffff">
     <meta property="og:title" content="Fuanjia Akemfua Ryan | Web & App Developer, UI/UX Designer">
     <meta property="og:description" content="Web and app developer building responsive digital experiences. Flutter, JavaScript, Firebase, and UI/UX.">
     <meta property="og:type" content="website">
@@ -113,6 +113,12 @@
                     <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Flutter</span><span>Dart</span><span>Firebase</span><span>Figma</span><span>UI/UX</span><span>Git</span><span>GitHub</span><span>Netlify</span><span>Android Studio</span>
                 </div>
             </div>
+            <div class="marquee marquee-alt" aria-hidden="true">
+                <div class="marquee-track">
+                    <span>Flutter</span><span>Firebase</span><span>Figma</span><span>JavaScript</span><span>UI/UX</span><span>GitHub</span><span>Netlify</span><span>HTML5</span><span>CSS3</span><span>Dart</span>
+                    <span>Flutter</span><span>Firebase</span><span>Figma</span><span>JavaScript</span><span>UI/UX</span><span>GitHub</span><span>Netlify</span><span>HTML5</span><span>CSS3</span><span>Dart</span>
+                </div>
+            </div>
         </section>
 
         <section id="about" class="about">
@@ -168,13 +174,23 @@
 
         <section id="skills" class="skills">
             <div class="container">
-                <header class="section-header">
-                    <p class="section-index">02</p>
-                    <h2 class="section-title">Skills</h2>
-                    <p class="section-subtitle">The technologies and tools I work with across web, mobile, and design.</p>
+                <header class="section-header section-header-row">
+                    <div>
+                        <p class="section-index">02</p>
+                        <h2 class="section-title">Skills</h2>
+                        <p class="section-subtitle">The technologies and tools I work with across web, mobile, and design.</p>
+                    </div>
+                    <div class="slider-controls">
+                        <button type="button" class="slider-btn" data-slider-prev="skills-track" aria-label="Previous skills">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="slider-btn" data-slider-next="skills-track" aria-label="Next skills">
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </header>
 
-                <div class="skills-grid">
+                <div class="skills-grid slider-track" id="skills-track" data-slider>
                     <article class="skill-group">
                         <h3>Frontend</h3>
                         <ul>
@@ -396,17 +412,25 @@
 
         <section id="contact" class="contact">
             <div class="container">
-                <header class="section-header">
-                    <p class="section-index">05</p>
-                    <h2 class="section-title">Contact</h2>
-                    <p class="section-subtitle">I'm currently looking for new opportunities. Feel free to reach out.</p>
+                <header class="section-header section-header-row">
+                    <div>
+                        <p class="section-index">05</p>
+                        <h2 class="section-title">Contact</h2>
+                        <p class="section-subtitle">I'm currently looking for new opportunities. Feel free to reach out.</p>
+                    </div>
+                    <div class="slider-controls">
+                        <button type="button" class="slider-btn" data-slider-prev="contact-track" aria-label="Previous contact">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="slider-btn" data-slider-next="contact-track" aria-label="Next contact">
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </header>
 
                 <div class="contact-layout">
-                    <div class="contact-info">
-                        <p class="contact-lead">The fastest ways to reach me are email, WhatsApp, or LinkedIn.</p>
-
-                        <ul class="contact-list">
+                    <p class="contact-lead">The fastest ways to reach me are email, WhatsApp, or LinkedIn.</p>
+                    <ul class="contact-list slider-track" id="contact-track" data-slider>
                             <li class="contact-item">
                                 <div class="contact-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
                                 <div>
@@ -444,8 +468,7 @@
                                     <a href="https://github.com/FuanjiaRyan" target="_blank" rel="noopener noreferrer">github.com/FuanjiaRyan</a>
                                 </div>
                             </li>
-                        </ul>
-                    </div>
+                    </ul>
 
                     <form class="contact-form" id="contactForm" novalidate>
                         <div class="form-group">
