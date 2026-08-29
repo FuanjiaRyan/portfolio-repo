@@ -20,6 +20,23 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-inner">
+            <span class="intro-line"></span>
+            <p>Fuanjia Ryan</p>
+        </div>
+    </div>
+    <div class="cursor" aria-hidden="true">
+        <span class="cursor-dot"></span>
+        <span class="cursor-ring"></span>
+    </div>
+    <div class="ambient" aria-hidden="true">
+        <span class="orb orb-a"></span>
+        <span class="orb orb-b"></span>
+        <span class="orb orb-c"></span>
+    </div>
+    <div class="pointer-glow" aria-hidden="true"></div>
+    <div class="scroll-progress" role="presentation"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -38,12 +55,15 @@
                 </button>
 
                 <div class="nav-panel" id="primary-nav">
-                    <ul class="nav-links">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#achievements">Achievements</a></li>
-                    </ul>
+                    <div class="nav-links-wrap">
+                        <span class="nav-indicator" aria-hidden="true"></span>
+                        <ul class="nav-links">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#achievements">Achievements</a></li>
+                        </ul>
+                    </div>
                     <a href="#contact" class="btn btn-nav">Let's talk</a>
                 </div>
             </div>
@@ -57,11 +77,11 @@
             <div class="container hero-grid">
                 <div class="hero-copy">
                     <p class="eyebrow">Web &amp; App Developer · UI/UX Designer</p>
-                    <h1 class="hero-title">
+                    <h1 class="hero-title" aria-label="Fuanjia Akemfua Ryan">
                         Fuanjia<br>
                         <span>Akemfua Ryan</span>
                     </h1>
-                    <p class="hero-lead">
+                    <p class="hero-lead js-words">
                         I design and build responsive web and mobile experiences — from Flutter apps on the Play Store to production-ready websites — using technology to solve problems in my community and beyond.
                     </p>
                     <ul class="hero-tags" aria-label="Primary skills">
@@ -79,11 +99,18 @@
                         Open to new opportunities
                     </p>
                 </div>
-                <div class="hero-portrait">
+                <div class="hero-portrait" data-tilt-soft>
+                    <div class="portrait-ring" aria-hidden="true"></div>
                     <div class="portrait-frame">
                         <img src="me.jpeg" alt="Portrait of Fuanjia Akemfua Ryan" width="640" height="800" fetchpriority="high">
                     </div>
                     <p class="portrait-caption">Buea, Cameroon · Building BioKit</p>
+                </div>
+            </div>
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track">
+                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Flutter</span><span>Dart</span><span>Firebase</span><span>Figma</span><span>UI/UX</span><span>Git</span><span>GitHub</span><span>Netlify</span><span>Android Studio</span>
+                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Flutter</span><span>Dart</span><span>Firebase</span><span>Figma</span><span>UI/UX</span><span>Git</span><span>GitHub</span><span>Netlify</span><span>Android Studio</span>
                 </div>
             </div>
         </section>
@@ -207,7 +234,7 @@
                 </div>
 
                 <div class="project-grid">
-                    <article class="project-card" data-category="mobile">
+                    <article class="project-card" data-tilt data-category="mobile">
                         <div class="project-media project-media--logo">
                             <img src="bio.png" alt="BioKit app logo" width="480" height="320" loading="lazy">
                         </div>
@@ -234,7 +261,7 @@
                         </div>
                     </article>
 
-                    <article class="project-card" data-category="mobile">
+                    <article class="project-card" data-tilt data-category="mobile">
                         <div class="project-media project-media--logo">
                             <img src="hypeicon.png" alt="HypeLink app logo" width="480" height="320" loading="lazy">
                         </div>
@@ -262,7 +289,7 @@
                         </div>
                     </article>
 
-                    <article class="project-card" data-category="web">
+                    <article class="project-card" data-tilt data-category="web">
                         <div class="project-media project-media--shot">
                             <img src="health.png" alt="HealthConnect website screenshot" width="640" height="400" loading="lazy">
                         </div>
@@ -303,8 +330,27 @@
                     <p class="section-subtitle">Milestones from competitions and professional collaboration.</p>
                 </header>
 
+                <div class="stat-strip">
+                    <article>
+                        <p class="stat-num"><span data-count="3">0</span><small>rd</small></p>
+                        <p class="stat-label">Place at CIMFEST</p>
+                    </article>
+                    <article>
+                        <p class="stat-num" data-count="17">0</p>
+                        <p class="stat-label">Teams</p>
+                    </article>
+                    <article>
+                        <p class="stat-num" data-count="77">0</p>
+                        <p class="stat-label">Participants</p>
+                    </article>
+                    <article>
+                        <p class="stat-num"><span data-count="200">0</span><small>k</small></p>
+                        <p class="stat-label">FCFA prize</p>
+                    </article>
+                </div>
+
                 <div class="achievements-list">
-                    <article class="achievement-card">
+                    <article class="achievement-card" data-tilt>
                         <div class="achievement-media">
                             <img src="cimfest.jpeg" alt="Team Endurance receiving 3rd place at CIMFEST Hackathon 2025" width="800" height="520" loading="lazy">
                         </div>
@@ -320,7 +366,7 @@
                         </div>
                     </article>
 
-                    <article class="achievement-card">
+                    <article class="achievement-card" data-tilt>
                         <div class="achievement-media">
                             <img src="telnet.jpeg" alt="Appointment collaboration with TELNET Cameroon" width="640" height="800" loading="lazy">
                         </div>
