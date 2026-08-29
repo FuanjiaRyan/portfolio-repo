@@ -1,6 +1,6 @@
 (() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const headerOffset = 76;
+    const headerOffset = 72;
 
     const menuToggle = document.querySelector(".menu-toggle");
     const navPanel = document.querySelector(".nav-panel");
@@ -80,7 +80,9 @@
     });
 
     const onScroll = () => {
-        navbar?.classList.toggle("scrolled", window.scrollY > 12);
+        const scrolled = window.scrollY > 12;
+        navbar?.classList.toggle("scrolled", scrolled);
+        document.querySelector(".site-header")?.classList.toggle("scrolled", scrolled);
         backToTop?.classList.toggle("is-visible", window.scrollY > 420);
 
         if (progress) {
@@ -446,8 +448,16 @@
         document.querySelectorAll(".about-intro").forEach((el) => {
             el.dataset.reveal = "left";
         });
-        document.querySelectorAll(".info-card").forEach((el, index) => {
+        document.querySelectorAll(".about-aside .info-card").forEach((el, index) => {
             el.dataset.reveal = index % 2 === 0 ? "right" : "up";
+        });
+        document.querySelectorAll(".focus-card").forEach((el, index) => {
+            el.dataset.reveal = "up";
+            el.style.setProperty("--d", `${index * 70}ms`);
+        });
+        document.querySelectorAll(".timeline-item").forEach((el, index) => {
+            el.dataset.reveal = "left";
+            el.style.setProperty("--d", `${index * 90}ms`);
         });
         document.querySelectorAll(".contact-form, [data-slider]").forEach((el) => {
             el.dataset.reveal = "up";
