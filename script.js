@@ -437,18 +437,52 @@
     }
 
     if (!prefersReducedMotion && "IntersectionObserver" in window) {
-        const revealTargets = document.querySelectorAll(
-            ".about-intro, .info-card, .skill-group, .project-card, .achievement-card, .contact-info, .contact-form, .section-header, .stat-strip"
-        );
+        document.querySelectorAll(".section-header").forEach((el) => {
+            el.dataset.reveal = "up";
+        });
+        document.querySelectorAll(".about-intro").forEach((el) => {
+            el.dataset.reveal = "left";
+        });
+        document.querySelectorAll(".contact-item").forEach((el, index) => {
+            el.dataset.reveal = "left";
+            el.style.setProperty("--d", `${index * 70}ms`);
+        });
+        document.querySelectorAll(".info-card").forEach((el, index) => {
+            el.dataset.reveal = index % 2 === 0 ? "right" : "up";
+        });
+        document.querySelectorAll(".contact-form").forEach((el) => {
+            el.dataset.reveal = "right";
+        });
+        document.querySelectorAll(".skill-group").forEach((el, index) => {
+            el.dataset.reveal = index % 2 === 0 ? "left" : "right";
+            el.style.setProperty("--d", `${index * 80}ms`);
+        });
+        document.querySelectorAll(".project-card").forEach((el, index) => {
+            el.dataset.reveal = index % 2 === 0 ? "left" : "right";
+            el.style.setProperty("--d", `${(index % 2) * 80}ms`);
+        });
+        document.querySelectorAll(".achievement-card").forEach((el, index) => {
+            el.dataset.reveal = index % 2 === 0 ? "left" : "right";
+        });
+        document.querySelectorAll(".stat-strip article").forEach((el, index) => {
+            el.dataset.reveal = "up";
+            el.style.setProperty("--d", `${index * 90}ms`);
+        });
+        document.querySelectorAll(".social-links a").forEach((el, index) => {
+            el.dataset.reveal = "up";
+            el.style.setProperty("--d", `${index * 70}ms`);
+        });
+
+        const revealTargets = document.querySelectorAll("[data-reveal]");
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add("reveal");
+                    entry.target.classList.add("is-in");
                     entry.target.querySelectorAll("[data-count]").forEach(animateCount);
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+        }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
 
         revealTargets.forEach((el) => observer.observe(el));
     }
